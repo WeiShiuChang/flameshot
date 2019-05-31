@@ -654,8 +654,7 @@ void CaptureWidget::processTool(CaptureTool *t) {
 void CaptureWidget::handleButtonSignal(CaptureTool::Request r) {
     switch (r) {
     case CaptureTool::REQ_CLEAR_MODIFICATIONS:
-        m_undoStack.setIndex(0);
-        update();
+        clear();
         break;
     case CaptureTool::REQ_CLOSE_GUI:
         close();
@@ -801,6 +800,7 @@ void CaptureWidget::initShortcuts() {
     new QShortcut(Qt::Key_Escape, this, SLOT(deleteToolwidgetOrClose()));
     new QShortcut(Qt::Key_Return, this, SLOT(copyScreenshot()));
     new QShortcut(Qt::Key_Enter, this, SLOT(copyScreenshot()));
+    new QShortcut(Qt::Key_Delete, this, SLOT(clear()));
 }
 
 void CaptureWidget::updateSizeIndicator() {
@@ -905,6 +905,11 @@ void CaptureWidget::undo() {
 
 void CaptureWidget::redo() {
     m_undoStack.redo();
+}
+
+void CaptureWidget::clear() {
+    m_undoStack.setIndex(0);
+    update();
 }
 
 QRect CaptureWidget::extendedSelection() const {

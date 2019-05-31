@@ -80,6 +80,7 @@ private slots:
     void togglePanel();
     void childEnter();
     void childLeave();
+    void clear();
 
     void leftResize();
     void rightResize();
