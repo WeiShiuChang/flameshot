@@ -72,6 +72,7 @@ public:
     QIcon icon() const;
     QString styleSheet() const;
     CaptureTool* tool() const;
+    ButtonType getButtonType() const;
 
     void setColor(const QColor &c);
     void animatedShow();
